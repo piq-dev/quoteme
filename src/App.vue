@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <List />
+    <div class="container">
+      <div class="center">
+        <List />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,4 +18,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style scope>
+.container {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+  align-items: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+</style>

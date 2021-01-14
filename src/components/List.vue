@@ -1,6 +1,16 @@
 <template>
   <div>
-    <h1>{{ info }}</h1>
+    <blockquote class="blockquote text-center">
+      <p class="mb-0">
+        {{ quote }}
+      </p>
+      <footer class="blockquote-footer mb-3">
+        {{ author }}
+      </footer>
+      <button class="btn btn-success btn-sm">
+        Quote me
+      </button>
+    </blockquote>
   </div>
 </template>
 <script>
@@ -12,15 +22,18 @@ export default {
   name: "List",
   data() {
     return {
-      info: null
+      quote: null,
+      author: null
     };
   },
   mounted() {
     Vue.axios
-      .get("https://api.coindesk.com/v1/bpi/currentprice.json")
+      .get("https://goquotes-api.herokuapp.com/api/v1/random?count=1")
       .then(response => {
-        console.warn((this.info = response.data.bpi));
+        this.quote = response.data.quotes[0].text;
+        this.author = response.data.quotes[0].author;
       });
   }
 };
 </script>
+<style scoped></style>
