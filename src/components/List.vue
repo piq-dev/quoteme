@@ -7,7 +7,7 @@
       <footer class="blockquote-footer mb-3">
         {{ author }}
       </footer>
-      <button class="btn btn-success btn-sm">
+      <button v-on:click="loadQuote" class="btn btn-success btn-sm">
         Quote me
       </button>
     </blockquote>
@@ -26,13 +26,18 @@ export default {
       author: null
     };
   },
-  mounted() {
-    Vue.axios
-      .get("https://goquotes-api.herokuapp.com/api/v1/random?count=1")
-      .then(response => {
-        this.quote = response.data.quotes[0].text;
-        this.author = response.data.quotes[0].author;
-      });
+  created: function() {
+    this.loadQuote;
+  },
+  methods: {
+    loadQuote: function() {
+      Vue.axios
+        .get("https://goquotes-api.herokuapp.com/api/v1/random?count=1")
+        .then(response => {
+          this.quote = response.data.quotes[0].text;
+          this.author = response.data.quotes[0].author;
+        });
+    }
   }
 };
 </script>
